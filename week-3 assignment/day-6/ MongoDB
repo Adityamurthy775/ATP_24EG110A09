@@ -1,0 +1,60 @@
+db.employees.insertMany([
+  {
+    empId: "E01", name: "Vikas",
+    skills: ["HTML", "CSS", "JavaScript"],
+    experiences: [
+      { companyName: "TCS", yearsOfExp: 2 },
+      { companyName: "Infosys", yearsOfExp: 3 }
+    ]
+  },
+  {
+    empId: "E02", name: "Ravi",
+    skills: ["React", "Node", "MongoDB"],
+    experiences: [
+      { companyName: "Wipro", yearsOfExp: 1 },
+      { companyName: "HCL", yearsOfExp: 2 }
+    ]
+  },
+  {
+    empId: "E03", name: "Sneha",
+    skills: ["React", "Angular", "CSS"],
+    experiences: [
+      { companyName: "Accenture", yearsOfExp: 4 },
+      { companyName: "Capgemini", yearsOfExp: 2 }
+    ]
+  },
+  {
+    empId: "E04", name: "Kiran",
+    skills: ["Python", "Django", "SQL"],
+    experiences: [
+      { companyName: "Tech Mahindra", yearsOfExp: 3 },
+      { companyName: "Cognizant", yearsOfExp: 1 }
+    ]
+  },
+  {
+    empId: "E05", name: "Anitha",
+    skills: ["React", "Redux", "JavaScript"],
+    experiences: [
+      { companyName: "IBM", yearsOfExp: 5 },
+      { companyName: "Oracle", yearsOfExp: 2 }
+    ]
+  }
+])
+
+1)db.employees.find({ skills: "React" })
+
+2)db.employees.updateMany({}, { $push: { skills: "Express" } })
+
+3)db.employees.updateMany(
+  {},
+  { $push: { experiences: { companyName: "Google", yearsOfExp: 1 } } }
+)
+
+4)db.employees.updateMany({}, { $pop: { experiences: -1 } })
+
+5)db.employees.updateOne(
+  { name: "Vikas" },
+  { $set: { address: { city: "Hyderabad", state: "Telangana", pincode: "500001" } } }
+)
+
+
