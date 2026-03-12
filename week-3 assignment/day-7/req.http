@@ -1,0 +1,78 @@
+### read all te users(req to protected route)
+GET http://localhost:3000/user-api/users
+
+
+### read a user by id
+
+
+GET http://localhost:3000/user-api/user
+
+
+
+###create a new user
+POST http://localhost:3000/user-api/users
+Content-Type: application/json
+
+{
+    "username":"Blastmohan",
+    "password":"Blastmohan",
+    "email":"Blastmohan@gmail.com",
+    "age":21
+}
+###update the user data
+PUT http://localhost:3000/user-api/users/69abc7f57759289f19a70048
+Content-Type: application/json
+
+{
+    "username":"BlastMohan",
+    "password":"rohan",
+    "email":"mohan@gmail.com",
+    "age":19
+}
+### delete the user data  by id 
+DELETE http://localhost:3000/user-api/users/69abc7f57759289f19a70048
+
+
+### user login request
+
+POST http://localhost:3000/user-api/auths
+Content-Type:application/json
+
+{
+  "email": "Blastmohan@gmail.com",
+  "password": "Blastmohan"
+}
+###
+GET http://localhost:4000/product-api/products
+
+###
+POST http://localhost:4000/product-api/products
+Content-Type: application/json
+
+{
+    "productid":3,
+    "productname":"pencile",
+    "price":5,
+    "brand":"pqr"
+}
+
+###
+PUT http://localhost:4000/product-api/products/69aaf0b62a835258b9121040
+Content-Type: application/json
+
+{
+    "productid":1,
+    "productname":"mixer",
+    "price":150,
+    "brand":"prestige"
+}
+
+###
+DELETE http://localhost:4000/product-api/products/69aaf0b62a835258b9121040
+###
+GET http://localhost:4000/product-api/products/69aaa95d4e5791a3d07f1ee9 
+
+### add product to user cart
+PUT http://localhost:3000/user-api/cart/product-id/69aaf0e22a835258b9121044
+
+
