@@ -26,9 +26,9 @@ function EditEmployee() {
       setLoading(true)
       setError(null)
 const res = await axios.post(
-  `https://atp-24eg110a09-backend.onrender.com/employee-api/employees`,
-        modifiedEmp
-      )
+  `${import.meta.env.VITE_API_URL}/employee-api/employees`,
+  modifiedEmp
+);
       if (res.status === 200) {
         navigate('/list')
       }
