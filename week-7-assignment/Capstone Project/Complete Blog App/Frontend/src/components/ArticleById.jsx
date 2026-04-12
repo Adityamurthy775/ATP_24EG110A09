@@ -47,12 +47,10 @@ function ArticleById() {
 
     const getArticle = async () => {
       setLoading(true)
-
       try {
         const res = await axios.get(`${BASE_URL}/user-api/article/${id}`, {
           withCredentials: true
         })
-
         setArticle(res.data.payload)
       } catch (err) {
         setError(err.response?.data?.error)
@@ -73,10 +71,9 @@ function ArticleById() {
     })
   }
 
-  // delete & restore article
+  //delete & restore article
   const toggleArticleStatus = async () => {
     const newStatus = !article.isActive
-
     const confirmMsg = newStatus
       ? 'Restore this article?'
       : 'Delete this article?'
@@ -88,23 +85,16 @@ function ArticleById() {
         { articleId: article._id, isArticleActive: newStatus },
         { withCredentials: true }
       )
-
-      console.log('SUCCESS:', res.data)
-
       setArticle(res.data.payload)
       navigate('/author-profile/articles', {
         replace: true,
         state: { refreshedAt: Date.now() }
       })
-
       toast.success(res.data.message)
     } catch (err) {
-      console.log('ERROR:', err.response)
-
       const msg = err.response?.data?.message
-
       if (err.response?.status === 400) {
-        toast(msg) // already deleted/active case
+        toast(msg)
       } else {
         setError(msg || 'Operation failed')
       }
@@ -116,11 +106,10 @@ function ArticleById() {
     navigate('/edit-article', { state: articleObj })
   }
 
-  //post comment by user
+  //post comment by user or admin
   const addComment = async (commentObj) => {
-    //add artcileId
+    //add articleId
     commentObj.articleId = article._id
-    console.log(commentObj)
     let res = await axios.put(`${BASE_URL}/user-api/articles`, commentObj, {
       withCredentials: true
     })
@@ -150,7 +139,6 @@ function ArticleById() {
 
         <div className={articleAuthorRow}>
           <div className={authorInfo}>✍️ {displayRole}</div>
-
           <div>{formatDate(article.createdAt)}</div>
         </div>
       </div>
@@ -164,15 +152,14 @@ function ArticleById() {
           <button className={editBtn} onClick={() => editArticle(article)}>
             Edit
           </button>
-
           <button className={deleteBtn} onClick={toggleArticleStatus}>
             {article.isActive ? 'Delete' : 'Restore'}
           </button>
         </div>
       )}
-      {/* form to add comment if role is USER */}
-      {/* USER actions */}
-      {user?.role === 'USER' && (
+
+      {/* USER & ADMIN comment form */}
+      {(user?.role === 'USER' || user?.role === 'ADMIN') && (
         <div className={articleActions}>
           <form onSubmit={handleSubmit(addComment)}>
             <input
@@ -183,7 +170,7 @@ function ArticleById() {
             />
             <button
               type="submit"
-              className="bg-amber-600 text-white px-5 py-2 rounded-2xl mt-5"
+              className="bg-[#0066cc] text-white px-5 py-2 rounded-full mt-4 text-sm hover:bg-[#004499] transition"
             >
               Add comment
             </button>
@@ -191,7 +178,6 @@ function ArticleById() {
         </div>
       )}
 
-      {/* comments */}
       {/* Comments */}
       <div className={commentsWrapper}>
         {article.comments?.length === 0 && (
@@ -216,7 +202,6 @@ function ArticleById() {
               <div className={commentHeader}>
                 <div className={commentUserRow}>
                   <div className={avatar}>{firstLetter}</div>
-
                   <div>
                     <p className={commentUser}>{name}</p>
                     <p className={commentTime}>

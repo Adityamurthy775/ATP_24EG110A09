@@ -33,7 +33,7 @@ function UserProfile() {
         })
         //update articles state
         if (res.status === 200) {
-          setArticles(await res.data.payload)
+          setArticles(res.data.payload)
         }
       } catch (err) {
         setError(err.response?.data?.error || 'Something went wrong')
@@ -56,7 +56,6 @@ function UserProfile() {
 
   const onLogout = async () => {
     await logout()
-
     navigate('/login')
   }
 
@@ -83,11 +82,11 @@ function UserProfile() {
           {currentUser?.profileImageUrl ? (
             <img
               src={currentUser.profileImageUrl}
-              className="w-16 h-16 rounded-full object-cover border"
+              className="w-16 h-16 rounded-full object-cover border flex-shrink-0"
               alt="profile"
             />
           ) : (
-            <div className="w-16 h-16 rounded-full bg-[#0066cc]/10 text-[#0066cc] flex items-center justify-center text-xl font-semibold">
+            <div className="w-16 h-16 rounded-full bg-[#0066cc]/10 text-[#0066cc] flex items-center justify-center text-xl font-semibold flex-shrink-0">
               {currentUser?.firstName?.charAt(0).toUpperCase()}
             </div>
           )}
@@ -124,29 +123,32 @@ function UserProfile() {
         ) : (
           <div className={articleGrid}>
             {articles.map((articleObj) => (
-              <div className={articleCardClass} key={articleObj._id}>
-                <div className="flex flex-col h-full">
-                  {/* TOP */}
-                  <div>
-                    <p className={articleTitle}>{articleObj.title}</p>
+              <div
+                className={`${articleCardClass} flex flex-col h-full`}
+                key={articleObj._id}
+              >
+                {/* TOP */}
+                <div className="flex flex-col gap-1 min-w-0">
+                  <p className={`${articleTitle} line-clamp-2`}>
+                    {articleObj.title}
+                  </p>
 
-                    <p className="text-sm text-[#6e6e73] mt-1">
-                      {articleObj.content.slice(0, 80)}...
-                    </p>
+                  <p className="text-sm text-[#6e6e73] mt-1 line-clamp-3 break-words">
+                    {articleObj.content}
+                  </p>
 
-                    <p className={`${timestampClass} mt-2`}>
-                      {formatDateIST(articleObj.createdAt)}
-                    </p>
-                  </div>
-
-                  {/* ACTION */}
-                  <button
-                    className={`${ghostBtn} mt-auto pt-4`}
-                    onClick={() => navigateToArticleByID(articleObj)}
-                  >
-                    Read Article →
-                  </button>
+                  <p className={`${timestampClass} mt-2`}>
+                    {formatDateIST(articleObj.createdAt)}
+                  </p>
                 </div>
+
+                {/* ACTION */}
+                <button
+                  className={`${ghostBtn} mt-auto pt-4`}
+                  onClick={() => navigateToArticleByID(articleObj)}
+                >
+                  Read Article →
+                </button>
               </div>
             ))}
           </div>

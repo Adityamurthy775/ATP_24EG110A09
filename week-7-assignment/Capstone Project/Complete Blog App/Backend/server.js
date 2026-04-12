@@ -1,5 +1,4 @@
 import exp from 'express'
-import 'dotenv/config'
 import { connect } from 'mongoose'
 import { userApp } from './APIs/UserAPI.js'
 import { authorApp } from './APIs/AuthorAPI.js'
@@ -7,7 +6,9 @@ import { adminApp } from './APIs/AdminAPI.js'
 import { commonApp } from './APIs/CommonAPI.js'
 import cookieParser from 'cookie-parser'
 import cors from 'cors'
+
 const app = exp()
+
 app.use(
   cors({
     origin: ['https://atp-24eg110a09-frontend.onrender.com', 'https://atp-24-eg-110-a17.vercel.app'],
@@ -30,14 +31,15 @@ app.use('/auth', commonApp)
 //Connect to DB
 const connectDB = async () => {
   try {
-    await connect(process.env.DB_URL)
+    await connect(process.env.DB_URL, { family: 4 })
     console.log('DB Connected')
     const port = process.env.PORT
-    app.listen(port, () => console.log(`server listening on ${port}`))
+    app.listen(port, () => console.log(`Server listening on ${port}`))
   } catch (err) {
     console.log('Error in DB Connect', err)
   }
 }
+
 connectDB()
 
 //to handle invalid path
@@ -51,17 +53,15 @@ app.use((err, req, res, next) => {
   console.log(err.name)
   console.log(err)
   //ValidationError
-  if (err.name === 'ValidationError') {
+  if (err.name === 'ValidationError')
     return res
       .status(400)
       .json({ message: 'Error occured', error: err.message })
-  }
   //CastError
-  if (err.name === 'CastError') {
+  if (err.name === 'CastError')
     return res
       .status(400)
       .json({ message: 'Error occured', error: err.message })
-  }
   //Send server side errors
   res.status(500).json({ message: 'Error occured', error: err.message })
 })

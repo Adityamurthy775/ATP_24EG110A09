@@ -1,29 +1,29 @@
-import jwt from "jsonwebtoken";
-import { config } from "dotenv";
-config();
-const { verify } = jwt;
+import jwt from 'jsonwebtoken'
+import { config } from 'dotenv'
+config()
+const { verify } = jwt
 
 export const verifyToken = (...allowedRoles) => {
   return (req, res, next) => {
     try {
       //get token from cookie
-      const token = req.cookies?.token;
+      const token = req.cookies?.token
       //check token existed or not
       if (!token) {
-        return res.status(401).json({ message: "Please Login first" });
+        return res.status(401).json({ message: 'Please Login first' })
       }
       //validate token
-      let decodedToken = verify(token, process.env.SECRET_KEY);
+      let decodedToken = verify(token, process.env.SECRET_KEY)
 
       //check the role is same as role in decodedToken
       if (!allowedRoles.includes(decodedToken.role)) {
-        res.status(403).json({ message: "You are not authorized" });
+        return res.status(403).json({ message: 'You are not authorized' })
       }
       //add decoded token
-      req.user = decodedToken;
-      next();
+      req.user = decodedToken
+      next()
     } catch (err) {
-      res.status(401).json({ message: "Invalid token" });
+      res.status(401).json({ message: 'Invalid token' })
     }
-  };
-};
+  }
+}

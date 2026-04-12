@@ -62,6 +62,12 @@ commonApp.post('/login', async (req, res) => {
   if (!isMatched) {
     return res.status(400).json({ message: 'Invalid password' })
   }
+  //check if user is active
+  if (!user.isUserActive) {
+    return res.status(403).json({
+      message: 'Your account has been deactivated. Please contact the admin.'
+    })
+  }
   //create jwt
   const signedToken = sign(
     {
