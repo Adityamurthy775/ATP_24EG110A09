@@ -49,6 +49,12 @@ app.use((err, req, res, next) => {
       .status(400)
       .json({ message: 'Error occured', error: err.message })
   }
+  //Duplicate Key
+  if (err.code === 11000) {
+    return res
+      .status(400)
+      .json({ message: 'Error occured', error: 'Duplicate entry detected (e.g. Email already exists)' })
+  }
   //Send server side errors
   res.status(500).json({ message: 'Error occured', error: err.message })
 })

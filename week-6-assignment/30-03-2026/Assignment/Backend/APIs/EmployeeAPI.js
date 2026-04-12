@@ -6,7 +6,7 @@ import { employeeModel } from '../models/EmployeeModel.js'
 //DEFINE employee REST API ROUTES
 
 //Create new employee
-employeeApp.post('/employees', async (req, res) => {
+employeeApp.post('/employees', async (req, res, next) => {
   try {
     const newEmployee = req.body
 
@@ -18,17 +18,16 @@ employeeApp.post('/employees', async (req, res) => {
 
     res.status(201).json({ message: 'employee Created' })
   } catch (err) {
-    console.error(err)
-    res.status(500).json({ message: err.message })
+    next(err)
   }
 })
 // Get all employees
-employeeApp.get('/employees', async (req, res) => {
+employeeApp.get('/employees', async (req, res, next) => {
   try {
     const employees = await employeeModel.find()
     res.status(200).json({ message: 'employees', payload: employees })
   } catch (err) {
-    res.status(500).json({ message: err.message })
+    next(err)
   }
 })
 
