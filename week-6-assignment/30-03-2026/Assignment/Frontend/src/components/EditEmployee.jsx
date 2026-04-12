@@ -27,9 +27,9 @@ const saveModifiedEmp = async (modifiedEmp) => {
   try {
     setLoading(true)
     setError(null)
-    const res = await axios.post(
-      `${import.meta.env.VITE_API_URL}/employee-api/employees`,
-      { ...modifiedEmp, _id: state._id } // ✅ include _id
+    const res = await axios.put(
+      `${import.meta.env.VITE_API_URL}/employee-api/employees/${state._id}`, // ✅ PUT + _id in URL
+      modifiedEmp // ✅ no need to include _id in body
     )
     if (res.status === 200) {
       navigate('/list')
