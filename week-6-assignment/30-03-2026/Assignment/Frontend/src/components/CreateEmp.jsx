@@ -23,7 +23,6 @@ const res = await axios.post(
   `https://atp-24eg110a09-backend.onrender.com/employee-api/employees`,
   newEmpObj
 );
-      )
       if (res.status === 201) {
         navigate('/list')
       } else {
