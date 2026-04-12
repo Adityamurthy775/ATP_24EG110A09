@@ -14,21 +14,20 @@ function ListOfEmps() {
     navigate('/edit-employee', { state: empObj })
   }
   const deleteEmployeeById = async (empObj) => {
-    try {
-      setLoading(true)
-
-const res = await axios.post(
-  `${import.meta.env.VITE_API_URL}/employee-api/employees`
-);
-      if (res.status === 200) {
-        getEmps()
-      }
-    } catch (err) {
-      setError(err.response?.data?.message || err.message)
-    } finally {
-      setLoading(false)
+  try {
+    setLoading(true)
+    const res = await axios.delete(
+      `${import.meta.env.VITE_API_URL}/employee-api/employees/${empObj._id}`
+    )
+    if (res.status === 200) {
+      getEmps()
     }
+  } catch (err) {
+    setError(err.response?.data?.message || err.message)
+  } finally {
+    setLoading(false)
   }
+}
   async function getEmps() {
     try {
       setLoading(true)
