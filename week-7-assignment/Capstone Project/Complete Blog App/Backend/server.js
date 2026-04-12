@@ -11,7 +11,7 @@ const app = exp()
 
 app.use(
   cors({
-    origin: ['https://atp-24eg110a09-frontend.onrender.com', 'https://atp-24-eg-110-a17.vercel.app'],
+    origin: ['https://atp-24eg110a09-frontend.onrender.com'],
     credentials: true
   })
 )
@@ -29,18 +29,17 @@ app.use('/admin-api', adminApp)
 app.use('/auth', commonApp)
 
 //Connect to DB
-const connectDB = async () => {
-  try {
-    await connect(process.env.DB_URL, { family: 4 })
-    console.log('DB Connected')
-    const port = process.env.PORT
-    app.listen(port, () => console.log(`Server listening on ${port}`))
-  } catch (err) {
-    console.log('Error in DB Connect', err)
-  }
-}
+const port = process.env.PORT || 10000;
 
-connectDB()
+// ✅ Start server FIRST
+app.listen(port, () => {
+  console.log(`Server listening on ${port}`);
+});
+
+// ✅ Then connect DB
+connect(process.env.DB_URL, { family: 4 })
+  .then(() => console.log("DB Connected"))
+  .catch((err) => console.log("Error in DB Connect", err));
 
 //to handle invalid path
 app.use((req, res, next) => {
