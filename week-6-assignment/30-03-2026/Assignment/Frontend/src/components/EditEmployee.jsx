@@ -4,6 +4,8 @@ import { useLocation, useNavigate } from 'react-router'
 import axios from 'axios'
 import BASE_URL from '../config'
 function EditEmployee() {
+  const BASE_URL = import.meta.env.VITE_API_URL
+export default BASE_URL
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
   const navigate = useNavigate()
@@ -26,7 +28,7 @@ function EditEmployee() {
       setLoading(true)
       setError(null)
 const res = await axios.post(
-  `${import.meta.env.VITE_API_URL}/employee-api/employees`,
+  `${BASE_URL}/employee-api/employees`,
   modifiedEmp
 );
       if (res.status === 200) {
