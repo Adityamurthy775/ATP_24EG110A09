@@ -8,7 +8,7 @@ const app = exp()
 
 app.use(
   cors({
-    origin: '*'
+    origin: 'https://atp-24eg110a09-frontend.onrender.com'
   })
 )
 
