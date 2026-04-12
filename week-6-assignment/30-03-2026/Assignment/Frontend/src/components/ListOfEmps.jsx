@@ -18,9 +18,8 @@ function ListOfEmps() {
       setLoading(true)
 
 const res = await axios.post(
-  `https://atp-24eg110a09-backend.onrender.com/employee-api/employees`
+  `${import.meta.env.VITE_API_URL}/employee-api/employees`
 );
-
       if (res.status === 200) {
         getEmps()
       }
