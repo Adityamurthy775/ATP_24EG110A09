@@ -19,9 +19,10 @@ function CreateEmp() {
     try {
       setLoading(true)
       //Make http Post request
-      const res = await axios.post(
-        `${BASE_URL}/employee-api/employees`,
-        newEmpObj
+const res = await axios.post(
+  `https://atp-24eg110a09-backend.onrender.com/employee-api/employees`,
+  newEmpObj
+);
       )
       if (res.status === 201) {
         navigate('/list')
