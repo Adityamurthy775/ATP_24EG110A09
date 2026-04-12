@@ -1,0 +1,16 @@
+.table2 {
+  width: 60%;
+  margin: 20px auto;
+  border-collapse: collapse;
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+.table2 th, .table2 td {
+  border: 1px solid black;
+  padding: 8px;
+}
+
+.table2 th {
+  background-color: #f2f2f2;
+}

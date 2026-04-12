@@ -1,0 +1,43 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #f0f0f0;
+}
+
+.container {
+  width: 70%;
+  margin: 40px auto;
+  background: #ffffff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.header {
+  background: #2c7a7b;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  font-size: 20px;
+}
+
+.table3 {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table3 th {
+  background: #e6fffa;
+  padding: 10px;
+}
+
+.table3 td {
+  padding: 10px;
+  text-align: center;
+  border-top: 1px solid #ddd;
+}
+
+.table3 img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}

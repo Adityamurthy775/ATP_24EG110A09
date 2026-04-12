@@ -1,0 +1,20 @@
+.table1 {
+  width: 60%;
+  margin: 20px auto;
+  border-collapse: collapse;
+  border: 2px solid black;
+  text-align: center;
+}
+
+.table1 th, .table1 td {
+  border: 1px solid black;
+  padding: 8px;
+}
+
+.title {
+  font-weight: bold;
+}
+
+.gray {
+  background-color: #ddd;
+}

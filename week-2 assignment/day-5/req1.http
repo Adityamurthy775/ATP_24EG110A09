@@ -1,0 +1,30 @@
+### to get the data
+GET http://localhost:4000/products 
+
+### to insert the data
+POST http://localhost:4000/products
+Content-Type: application/json
+
+{
+    "productid":3,
+    "name":"mixer",
+    "brand":"xyz",
+    "price":150
+}
+
+### to update the data
+PUT http://localhost:4000/products
+Content-Type: application/json
+
+{
+    "productid":1,
+    "name":"mixer",
+    "brand":"abc",
+    "price":150
+}
+
+
+### to delete the data
+DELETE http://localhost:4000/products/2
+###  to the data based on the brand
+GET http://localhost:4000/products/xyz 
