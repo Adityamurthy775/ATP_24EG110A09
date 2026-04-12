@@ -15,17 +15,17 @@ app.use(
 app.use(exp.json())
 app.use('/employee-api', employeeApp)
 
-const connectDB = async () => {
-  try {
-    await connect(process.env.DB_URL)
-    console.log('DB Connected')
-    const port = process.env.PORT || 4000
-    app.listen(port, () => console.log(`server listening on ${port}`))
-  } catch (err) {
-    console.log('Error in DB Connect', err)
-  }
-}
-connectDB()
+const port = process.env.PORT || 4000;
+
+// Start server immediately
+app.listen(port, () => {
+  console.log(`Server listening on ${port}`);
+});
+
+// Connect DB separately
+connect(process.env.DB_URL)
+  .then(() => console.log('DB Connected'))
+  .catch((err) => console.log('Error in DB Connect', err));
 
 //to handle invalid path
 app.use((req, res, next) => {
