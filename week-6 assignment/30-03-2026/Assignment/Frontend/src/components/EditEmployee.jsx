@@ -25,8 +25,8 @@ function EditEmployee() {
     try {
       setLoading(true)
       setError(null)
-      const res = await axios.put(
-        `${BASE_URL}/employee-api/employees/${state._id}`,
+const res = await axios.post(
+  `https://atp-24eg110a09-backend.onrender.com/employee-api/employees`,
         modifiedEmp
       )
       if (res.status === 200) {
