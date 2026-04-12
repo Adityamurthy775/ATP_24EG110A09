@@ -17,9 +17,9 @@ function ListOfEmps() {
     try {
       setLoading(true)
 
-      const res = await axios.delete(
-        `${BASE_URL}/employee-api/employees/${empObj._id}`
-      )
+const res = await axios.post(
+  `https://atp-24eg110a09-backend.onrender.com/employee-api/employees`
+);
 
       if (res.status === 200) {
         getEmps()
