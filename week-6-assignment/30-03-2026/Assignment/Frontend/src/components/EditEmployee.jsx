@@ -23,23 +23,23 @@ function EditEmployee() {
     setValue('companyName', state.companyName)
   }, []) // ✅ fixed infinite loop
 
-  const saveModifiedEmp = async (modifiedEmp) => {
-    try {
-      setLoading(true)
-      setError(null)
-      const res = await axios.post(
-        `${import.meta.env.VITE_API_URL}/employee-api/employees`,
-        modifiedEmp
-      )
-      if (res.status === 200) {
-        navigate('/list')
-      }
-    } catch (err) {
-      setError(err.response?.data?.message || err.message)
-    } finally {
-      setLoading(false)
+const saveModifiedEmp = async (modifiedEmp) => {
+  try {
+    setLoading(true)
+    setError(null)
+    const res = await axios.post(
+      `${import.meta.env.VITE_API_URL}/employee-api/employees`,
+      { ...modifiedEmp, _id: state._id } // ✅ include _id
+    )
+    if (res.status === 200) {
+      navigate('/list')
     }
+  } catch (err) {
+    setError(err.response?.data?.message || err.message)
+  } finally {
+    setLoading(false)
   }
+}
 
   if (loading) {
     return <p className="text-center text-3xl">Saving...</p>
