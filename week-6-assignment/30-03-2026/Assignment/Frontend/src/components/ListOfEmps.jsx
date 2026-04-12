@@ -16,9 +16,9 @@ function ListOfEmps() {
   const deleteEmployeeById = async (empObj) => {
   try {
     setLoading(true)
-    const res = await axios.delete(
-      `${import.meta.env.VITE_API_URL}/employee-api/employees/${empObj._id}`
-    )
+const res = await axios.delete(
+  `${import.meta.env.VITE_API_URL}/employee-api/employees/${empObj._id}`
+)
     if (res.status === 200) {
       getEmps()
     }
