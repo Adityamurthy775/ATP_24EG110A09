@@ -1,12 +1,17 @@
+// Define student class with private sno (serial number) property
 class student{
-    #sno;// # private variable
+    #sno;// # private variable - encapsulation
     name;
     email
+
+    // Constructor to initialize student properties
     constructor(sno,name,email){
         this.email=email
         this.name=name
         this.#sno=sno
     }
+
+    // Method to get student details
     getstudentdetails(){
         return this.name
     }
@@ -17,63 +22,43 @@ class student{
 /*
 Problem Statement: Library Book Management System
 -------------------------------------------------
-Objective : Create a Book class and use it to manage a collection of books in a library.
+This program creates a Book class to manage library books
+*/
 
-Requirements:
-  Create a Book class with the following:
-
-  Properties:
-      title (string)
-      author (string)
-      pages (number)
-      isAvailable (boolean, default: true)
-
-
-  Methods:
-      borrow() - Marks the book as not available
-      returnBook() - Marks the book as available
-      getInfo() - Returns a string with book details (e.g., "The Hobbit by J.R.R. Tolkien (310 pages)")
-      isLongBook() - Returns true if pages > 300, false otherwise
-
-
-
-
-  1. Create at least 5 book objects using the class:
-      Example: "Harry Potter", "1984", "The Hobbit", etc.
-
-
-  2. Perform the following operations:
-
-      i. Display info of all books
-      ii. Borrow 2 books and show their availability status
-      iii. Return 1 book and show updated status
-      iv. Count how many books are "long books" (more than 300 pages)
-      v. List all available books
-
-      */
+// Counter to track long books
 let count=0;
+
+// Class to represent a book in the library
 class library{
     title
     author
     pages
     isAvailable
+
+    // Constructor to initialize book properties
     constructor(title,author,pages,isAvailable){
         this.title=title
         this.author=author
         this.pages=pages
         this.isAvailable=isAvailable
-
     }
+
+    // Method to borrow a book (mark as not available)
     borrow(title){
         this.isAvailable=false
     }
+
+    // Method to return a book (mark as available)
     returnbook(title){
         this.isAvailable=true
-
     }
+
+    // Method to get book details as a formatted string
     getdetails(){
         return `The ${this.title} by ${this.author} (${this.pages} ${this.isAvailable}) `
     }
+
+    // Method to check if book is long (more than 300 pages)
     islong(){
         if(this.pages> 300){
             return true
@@ -82,22 +67,41 @@ class library{
             return false
         }
     }
-
 }
+
+// Create first book object: Python book with 30 pages
 let result=new library("python","adi",30,true)
+
+// Create second book object: Harry Potter with 700 pages
 let result1=new library("harry poter","byme",700,false)
+
+// Store book objects in array
 arr=[result,result1]
+
+// Display details of both books
 console.log(result.getdetails())
 console.log(result.getdetails())
+
+// Borrow the first book
 result.borrow("python")
+
+// Borrow the second book
 result1.borrow("harry potter")
+
+// Return the first book
 result.returnbook("python")
+
+// Loop through all books
 for (let v of arr){
+    // Check if book is available and display it
     if(v.isAvailable===true){
         console.log(v.getdetails())
     }
+    // Count long books (more than 300 pages)
     if(v.islong()===true){
         count++
     }
 }
+
+// Display the count of long books
 console.log(count)
