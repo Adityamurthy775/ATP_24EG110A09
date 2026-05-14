@@ -1,6 +1,6 @@
 # Week 1 — JavaScript Fundamentals & Array Manipulation
 
-**Dates:** 18 Feb 2026 – 19 Feb 2026 | **Roll No:** 24EG110A17
+**Dates:** 18 Feb 2026 – 19 Feb 2026 | **Roll No:** 24EG110A09
 
 ---
 

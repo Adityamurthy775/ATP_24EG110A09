@@ -1,6 +1,6 @@
 # Week 6 — React Hooks, State Management & Full-Stack Employee App
 
-**Dates:** 28 Mar 2026 – 31 Mar 2026 | **Roll No:** 24EG110A17
+**Dates:** 28 Mar 2026 – 31 Mar 2026 | **Roll No:** 24EG110A09
 
 ---
 
@@ -129,7 +129,7 @@ const { counter, increment, decrement } = useContext(counterContextObj)
 
 ### Tech Stack
 
-**Backend:** Node.js, Express.js, MongoDB + Mongoose, dotenv, cors  
+**Backend:** Node.js, Express.js, MongoDB + Mongoose, dotenv, cors
 **Frontend:** React 19, Vite, React Router v7, Axios, Zustand, react-hook-form, Tailwind CSS v4
 
 ### Backend
